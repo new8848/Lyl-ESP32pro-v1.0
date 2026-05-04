@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1440</width>
+     <height>820</height>
+    </rect>
+   </property>
+  <property name="windowTitle">
+   <string>OneNET设备属性查询</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string>QWidget#centralWidget { background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1e1e1e, stop:1 #2d2d2d); }
+
+/* 通用GroupBox样式 */
+QGroupBox { 
+    border: 1px solid #404040; 
+    border-radius: 8px; 
+    margin-top: 15px; 
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2a2a2a, stop:1 #353535);
+    border: 1px solid qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #3a3a3a, stop:1 #454545);
+}
+
+QGroupBox::title { 
+    subcontrol-origin: margin; 
+    left: 10px; 
+    padding: 0 8px 0 8px; 
+    background-color: #333333; 
+    color: #ffffff; 
+    font-weight: bold;
+    font-size: 13px;
+    border-radius: 4px;
+    border: 1px solid #606060;
+}
+
+/* 嵌套GroupBox样式 */
+QGroupBox QGroupBox {
+    border: 1px solid #454545;
+    border-radius: 6px;
+    margin-top: 12px;
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #252525, stop:1 #303030);
+    border: 1px solid qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #303030, stop:1 #3a3a3a);
+}
+
+QGroupBox QGroupBox::title {
+    font-size: 12px;
+    color: #ffffff;
+    padding: 0 6px 0 6px;
+    background-color: #3a3a3a;
+}
+
+/* 按钮样式 */
+QPushButton {
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    border: none;
+    background-color: #0078d7;
+    outline: none;
+}
+
+QPushButton:hover {
+    background-color: #1089ff;
+    border: 1px solid rgba(0, 120, 215, 0.5);
+}
+
+QPushButton:pressed {
+    background-color: #0066c0;
+    border: 1px solid rgba(0, 120, 215, 0.3);
+}
+
+/* 按钮特定颜色 */
+QPushButton#queryButton { background-color: #0078d7; }
+QPushButton#queryButton:hover { background-color: #1089ff; border: 1px solid rgba(0, 120, 215, 0.5); }
+QPushButton#queryHistoryButton { background-color: #107c10; }
+QPushButton#queryHistoryButton:hover { background-color: #148c14; border: 1px solid rgba(16, 124, 16, 0.5); }
+QPushButton#exportButton { background-color: #005a9e; }
+QPushButton#exportButton:hover { background-color: #0066b3; border: 1px solid rgba(0, 90, 158, 0.5); }
+QPushButton#refreshButton { background-color: #ffb900; color: #333333; }
+QPushButton#refreshButton:hover { background-color: #ffc600; border: 1px solid rgba(255, 185, 0, 0.5); }
+QPushButton#clearButton { background-color: #d13438; }
+QPushButton#clearButton:hover { background-color: #e24549; border: 1px solid rgba(209, 52, 56, 0.5); }
+QPushButton#openFanButton { background-color: #1a9c1a; color: #ffffff; }
+QPushButton#openFanButton:hover { background-color: #1eaf1e; border: 1px solid rgba(26, 156, 26, 0.5); }
+QPushButton#closeFanButton { background-color: #e14448; color: #ffffff; }
+QPushButton#closeFanButton:hover { background-color: #f25559; border: 1px solid rgba(225, 68, 72, 0.5); }
+QPushButton#openLightButton { background-color: #ffc900; color: #ffffff; }
+QPushButton#openLightButton:hover { background-color: #ffda00; border: 1px solid rgba(255, 201, 0, 0.5); }
+QPushButton#closeLightButton { background-color: #777777; color: #ffffff; }
+QPushButton#closeLightButton:hover { background-color: #888888; border: 1px solid rgba(119, 119, 119, 0.5); }
+
+/* 文本框样式 */
+QLineEdit, QTextEdit {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #3a3a3a, stop:1 #404040);
+    border: 1px solid #505050;
+    border-radius: 6px;
+    padding: 8px 10px;
+    color: #e0e0e0;
+    font-size: 13px;
+}
+
+QLineEdit:focus, QTextEdit:focus {
+    border-color: #0096ff;
+    background-color: #454545;
+    border-width: 2px;
+    border-style: outset;
+}
+
+/* 标签样式 */
+QLabel {
+    color: #cccccc;
+    font-size: 13px;
+}
+
+QLabel#temperatureLabel {
+    color: #33adff;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: rgba(51, 173, 255, 0.1);
+    border: 1px solid rgba(51, 173, 255, 0.3);
+    border-radius: 8px;
+}
+
+QLabel#humidityLabel {
+    color: #4cd964;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: rgba(76, 217, 100, 0.1);
+    border: 1px solid rgba(76, 217, 100, 0.3);
+    border-radius: 8px;
+}
+
+QLabel#concentrationLabel {
+    color: #ff8555;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: rgba(255, 133, 85, 0.1);
+    border: 1px solid rgba(255, 133, 85, 0.3);
+    border-radius: 8px;
+}
+
+/* 滑块样式 */
+QSlider::groove:horizontal {
+    border: 1px solid #404040;
+    height: 8px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #404040, stop:1 #505050);
+    margin: 2px 0;
+    border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #1a88ff, stop:1 #0066cc);
+    border: 1px solid #0055aa;
+    width: 20px;
+    margin: -6px 0;
+    border-radius: 10px;
+    border-style: outset;
+}
+
+QSlider::handle:horizontal:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #3399ff, stop:1 #1a75ff);
+    border: 2px solid #0055aa;
+    border-style: inset;
+}
+
+/* 进度条样式 */
+QProgressBar#temperatureProgressBar {
+    border: 1px solid #404040;
+    border-radius: 4px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #404040, stop:1 #505050);
+    text-align: center;
+}
+
+QProgressBar#temperatureProgressBar::chunk {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #33adff, stop:1 #1a75ff);
+    border-radius: 4px;
+}
+
+QProgressBar#humidityProgressBar {
+    border: 1px solid #404040;
+    border-radius: 4px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #404040, stop:1 #505050);
+    text-align: center;
+}
+
+QProgressBar#humidityProgressBar::chunk {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #4cd964, stop:1 #2ea043);
+    border-radius: 4px;
+}
+
+QProgressBar#concentrationProgressBar {
+    border: 1px solid #404040;
+    border-radius: 4px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #404040, stop:1 #505050);
+    text-align: center;
+}
+
+QProgressBar#concentrationProgressBar::chunk {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #ff8555, stop:1 #e56600);
+    border-radius: 4px;
+}
+
+/* 状态栏样式 */
+QStatusBar {
+    background-color: #333333;
+    border-top: 1px solid #505050;
+    color: #cccccc;
+}
+
+/* 菜单栏样式 */
+QMenuBar {
+    background-color: #333333;
+    border-bottom: 1px solid #505050;
+    color: #cccccc;
+}
+
+QMenuBar::item {
+    background-color: transparent;
+    color: #cccccc;
+    padding: 8px 12px;
+}
+
+QMenuBar::item:selected {
+    background-color: #454545;
+    color: #ffffff;
+}
+    </string>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+    <number>16</number>
+   </property>
+    <property name="margin">
+     <number>10</number>
+    </property>
+    <item>
+     <layout class="QVBoxLayout" name="leftLayout">
+      <property name="spacing">
+       <number>16</number>
+      </property>
+      <item>
+       <widget class="QGroupBox" name="groupBox_2">
+        <property name="title">
+         <string>响应信息</string>
+        </property>
+        <property name="styleSheet">
+         <string></string>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>360</width>
+          <height>280</height>
+         </size>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <widget class="QTextEdit" name="responseInfoTextEdit">
+           <property name="minimumSize">
+            <size>
+             <width>340</width>
+             <height>220</height>
+            </size>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+           <property name="styleSheet">
+            <string></string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox_4">
+        <property name="title">
+         <string>设备信息</string>
+        </property>
+        <property name="styleSheet">
+         <string></string>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>350</width>
+          <height>260</height>
+         </size>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QLineEdit" name="productIdLineEdit">
+           <property name="text">
+            <string>83bcAx554p</string>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+           <property name="styleSheet">
+            <string></string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="deviceNameLineEdit">
+           <property name="text">
+            <string>Linux_my_client_start</string>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+           <property name="styleSheet">
+            <string></string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="centerLayout">
+      <property name="spacing">
+                <number>16</number>
+               </property>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <property name="spacing">
+              <number>16</number>
+             </property>
+        <item>
+         <widget class="QGroupBox" name="groupBox_5">
+          <property name="title">
+           <string>温度实时显示</string>
+          </property>
+          <property name="styleSheet">
+           <string></string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <widget class="QLabel" name="temperatureLabel">
+             <property name="text">
+              <string>温度显示</string>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string></string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>100</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QProgressBar" name="temperatureProgressBar">
+             <property name="minimum">
+              <number>0</number>
+             </property>
+             <property name="maximum">
+              <number>100</number>
+             </property>
+             <property name="value">
+              <number>25</number>
+             </property>
+             <property name="textVisible">
+              <bool>true</bool>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="styleSheet">
+              <string></string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_8">
+          <property name="title">
+           <string>湿度实时显示</string>
+          </property>
+          <property name="styleSheet">
+           <string></string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_9">
+           <item>
+            <widget class="QLabel" name="humidityLabel">
+             <property name="text">
+              <string>湿度显示</string>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string></string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>100</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QProgressBar" name="humidityProgressBar">
+             <property name="minimum">
+              <number>0</number>
+             </property>
+             <property name="maximum">
+              <number>100</number>
+             </property>
+             <property name="value">
+              <number>40</number>
+             </property>
+             <property name="textVisible">
+              <bool>true</bool>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="styleSheet">
+              <string></string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_6">
+          <property name="title">
+           <string>浓度实时显示</string>
+          </property>
+          <property name="styleSheet">
+           <string></string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <widget class="QLabel" name="concentrationLabel">
+             <property name="text">
+              <string>浓度显示</string>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string></string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>100</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QProgressBar" name="concentrationProgressBar">
+             <property name="minimum">
+              <number>0</number>
+             </property>
+             <property name="maximum">
+              <number>100</number>
+             </property>
+             <property name="value">
+              <number>50</number>
+             </property>
+             <property name="textVisible">
+              <bool>true</bool>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="styleSheet">
+              <string></string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox_7">
+        <property name="title">
+         <string>数据控制</string>
+        </property>
+        <property name="styleSheet">
+         <string></string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <widget class="QPushButton" name="queryButton">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>查询最新属性</string>
+           </property>
+           <property name="styleSheet">
+            <string></string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="queryHistoryButton">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>查询历史数据</string>
+           </property>
+           <property name="styleSheet">
+            <string></string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <property name="spacing">
+            <number>16</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="exportButton">
+             <property name="text">
+              <string>导出历史记录</string>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+               <string></string>
+              </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="refreshButton">
+             <property name="text">
+                            <string>阈值设置</string>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+               <string></string>
+              </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="clearButton">
+             <property name="text">
+              <string>清除</string>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+               <string></string>
+              </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="rightLayout">
+      <property name="spacing">
+                <number>16</number>
+               </property>
+      <item>
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="title">
+         <string>设备控制</string>
+        </property>
+        <property name="styleSheet">
+         <string></string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <property name="spacing">
+            <number>16</number>
+           </property>
+         <item>
+          <widget class="QTextEdit" name="deviceStatusTextEdit">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>340</width>
+             <height>220</height>
+            </size>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+           <property name="styleSheet">
+            <string></string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox">
+           <property name="title">
+            <string>控制按钮</string>
+           </property>
+           <property name="styleSheet">
+            <string></string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <property name="spacing">
+             <number>8</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <property name="spacing">
+               <number>12</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="openFanButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>150</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>打开风扇</string>
+                </property>
+                <property name="styleSheet">
+                <string></string>
+               </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="closeFanButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>150</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>关闭风扇</string>
+                </property>
+                <property name="styleSheet">
+                <string></string>
+               </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <property name="spacing">
+               <number>16</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="openLightButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>150</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>打开灯</string>
+                </property>
+                <property name="styleSheet">
+                <string></string>
+               </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="closeLightButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>150</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>关闭灯</string>
+                </property>
+                <property name="styleSheet">
+                <string></string>
+               </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QPushButton" name="drawChartButton">
+              <property name="text">
+               <string>绘制图表</string>
+              </property>
+              <property name="styleSheet">
+               <string>background-color: #626681; color: white;</string>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>40</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1280</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="8" margin="10"/>
+ <resources/>
+ <connections/>
+</ui>
